@@ -14,12 +14,16 @@ X_poly = zeros(numel(X), p);
 %               column of X contains the values of X to the p-th power.
 %
 % 
-
-
-
-
+vector1 = X;
+vector2 = 1:p;
+X_poly = bsxfun(@power, vector1, vector2);
 
 
 % =========================================================================
 
 end
+
+%!test
+%! p = polyFeatures([1:3]',4)
+%! p_expected = [1    1    1    1; 2    4    8   16; 3    9   27   81];
+%! assert(p, p_expected, 1);
