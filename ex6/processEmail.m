@@ -66,8 +66,11 @@ while ~isempty(email_contents)
 
     % Stem the word 
     % (the porterStemmer sometimes has issues, so we use a try catch block)
-    try str = porterStemmer(strtrim(str)); 
-    catch str = ''; continue;
+    try 
+        str = porterStemmer(strtrim(str)); 
+    catch 
+        str = ''; 
+        continue;
     end;
 
     % Skip the word if it is too short
@@ -97,8 +100,8 @@ while ~isempty(email_contents)
     %       str2). It will return 1 only if the two strings are equivalent.
     %
 
-
-
+    match = strcmp(str, vocabList);
+    word_indices = [word_indices ; find(match)];
 
 
 
